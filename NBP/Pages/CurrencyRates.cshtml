@@ -1,0 +1,63 @@
+﻿@page
+@model CurrencyRates
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Currency rates";
+}
+
+<a asp-page="CurrencyRates" asp-page-handler="OnClick">
+    Download currency rates
+</a>
+
+@{
+    if(!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <h2>@Model.ErrorMessage</h2>
+    }
+}
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrencyRate[0].Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrencyRate[0].Table)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrencyRate[0].CurrencyCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrencyRate[0].Currency)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrencyRate[0].Rate)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.CurrencyRate)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Table)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrencyCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Currency)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rate)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
